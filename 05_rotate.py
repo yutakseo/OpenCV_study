@@ -13,10 +13,23 @@ src = cv2.imread("bird.jpg", cv2.IMREAD_COLOR)
 
 
 height, width, channel = src.shape
-matrix = cv2.getRotationMatrix2D((width/2, height/2), 90, 1)
+#이미지의 폭, 높이, 컬러값을 해당 변수에 저장
+
+matrix = cv2.getRotationMatrix2D((width/2, height/2), 45, 1)
+#.getRotationMatrix2D(Center, Angle, Scale)메서드
+#회전행렬생성함수으로 회전 변환 행렬을 계산
+
+#높이와 폭의 반은 이미지의 중심점이므로 이미지의 중심을 지정하고
+#90도 회전
+#이미지의 크기는 100% 유지
+
 dst = cv2.warpAffine(src, matrix, (width, height))
+#아핀 변환 함수으로 회전변환을 계산
+#.wrapAffine(scr, M, dsize)메서드는 원본이미지(scr)에
+#M(변환된 행렬)을 적용하고 이미지크기(dsize)를 적용하여
+#입력 이미지를 변환한다
 
 cv2.imshow("src", src)
 cv2.imshow("dst", dst)
-cv2.waitKey()
+cv2.waitKey(10000)
 cv2.destroyAllWindows()
